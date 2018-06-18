@@ -1,0 +1,46 @@
+#!groovy
+pipeline
+{
+	agent any
+	stages
+	{
+		stage('Version')
+		{
+			steps
+			{
+				bat "mvn --version"
+			}
+		}
+		stage('Build')
+		{
+			steps
+			{
+				bat "mvn build"
+			}
+		}
+		stage('package')
+		{
+			steps
+			{
+				bat "mvn package -Ptest -Denv=${params.apigee_env} -Dorg=${params.apigee_org}"
+			}
+		}
+		stage('clean')
+		{
+			steps
+			{
+				bat "mvn clean"
+			}
+		}
+		stage('install')
+		{
+			steps
+			{
+				bat "mvn install" + " -Ptest -Denv=${params.apigee_env} -Dorg=${params.apigee_org} " +
+						" -Dusername=${params.apigee_user} " +
+						" -Dpassword=${params.apigee_password} "
+						
+			}
+		}
+	}
+}
