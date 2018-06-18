@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<APIProxy revision="1" name="TestDemo">
+    <Basepaths>/testdemo</Basepaths>
+    <ConfigurationVersion majorVersion="4" minorVersion="0"/>
+    <CreatedAt>1527879784564</CreatedAt>
+    <CreatedBy>vpittala@my.bridgeport.edu</CreatedBy>
+    <Description></Description>
+    <DisplayName>TestDemo</DisplayName>
+    <LastModifiedAt>1527879870772</LastModifiedAt>
+    <LastModifiedBy>vpittala@my.bridgeport.edu</LastModifiedBy>
+    <ManifestVersion>SHA-512:41ac9f0817f024b5319f7d81e16202d1e92e73d5d2c68cbc89dd6db09a51c217bc114632f325ac69eb2965d910981f6360f99a94907880f948fa313a8f6a8c88</ManifestVersion>
+    <Policies>
+        <Policy>JavaScript-1</Policy>
+        <Policy>Spike-Arrest</Policy>
+    </Policies>
+    <ProxyEndpoints>
+        <ProxyEndpoint>default</ProxyEndpoint>
+    </ProxyEndpoints>
+    <Resources>
+        <Resource>jsc://JavaScript-1.js</Resource>
+    </Resources>
+    <Spec></Spec>
+    <TargetServers/>
+    <TargetEndpoints>
+        <TargetEndpoint>default</TargetEndpoint>
+    </TargetEndpoints>
+</APIProxy>
