@@ -26,7 +26,7 @@
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>apigee</groupId>
-    <artifactId>forecastweatherapi</artifactId>
+    <artifactId>Myfirstpipe</artifactId>
 	<!--artifactId>security-sharedflow</artifactId-->
     <version>1.0</version>
     <name>MyfirstPipe</name>
