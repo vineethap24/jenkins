@@ -26,8 +26,8 @@
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>apigee</groupId>
-    <!--artifactId>forecastweatherapi</artifactId-->
-	<artifactId>security-sharedflow</artifactId>
+    <artifactId>forecastweatherapi</artifactId>
+	<!--artifactId>security-sharedflow</artifactId-->
     <version>1.0</version>
     <name>forecastweatherapi</name>
     <packaging>pom</packaging>
