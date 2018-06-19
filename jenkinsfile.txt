@@ -1,51 +1,39 @@
 #!groovy
-pipeline
-{
-	agent any
-	stages
-	{
-		stage('clean')
-		{
-			steps
-			{
-				bat "mvn clean"
-			}
-		}
-		stage('install')
-		{
-			steps
-			{
-				bat "mvn install" + " -Ptest -Denv=${params.apigee_env} -Dorg=${params.apigee_org} " +
-						" -Dusername=${params.apigee_user} " +
-						" -Dpassword=${params.apigee_password} " +
-					" -Doptions=${params.apigee_options} "
-						
-			}
-		}
-		stage('Pre-Deployment Configuration - targetservers') {
-            steps {
-                println "Predeployment of targetservers "
-                bat "mvn apigee-config:targetservers " +
-						"    -Papigee -Denv=${params.apigee_env} -Dorg=${params.apigee_org} " +
-                        "    -Dusername=${params.apigee_user} " +
-                        "    -Dpassword=${params.apigee_pwd}" +
-						" -Doptions=${params.apigee_options} "
 
-                
+pipeline {
+    agent any
+    tools {
+        maven 'Maven'
+        nodejs 'NodeJS'
+    }
+    stages {
+            stage('Clean') {
+                steps {
+                dir('edge') {
+                    sh "mvn clean"
+                }
             }
         }
-		stage('Build proxy bundle') {
+            
+
+            stage('Pre-Deployment Configuration - targetservers') {
                 steps {
-                    
-                    bat "mvn package -Papigee -Denv=${params.apigee_env} -Dorg=${params.apigee_org}"
+                    dir('edge') {
+                    println "Predeployment of targetservers "
+                    sh "mvn apigee-config:targetservers " +
+                            "    -Papigee -Denv=${params.apigee_env} -Dorg=${params.apigee_org} " +
+                            "    -Dusername=${params.apigee_user} " +
+                            "    -Dpassword=${params.apigee_pwd}"
 
                 }
-			}	
-            
-        stage('Deploy proxy bundle') {
+            }
+        }
+
+            stage('Build proxy bundle') {
                 steps {
-                    bat "mvn apigee-enterprise:deploy -Papigee -Denv=${params.apigee_env} -Dorg=${params.apigee_org} -Dusername=${params.apigee_user} -Dpassword=${params.apigee_pwd} -Doptions=${params.apigee_options"
+                    dir('edge') {
+                    sh "mvn package -Papigee -Denv=${params.apigee_env} -Dorg=${params.apigee_org}"
+
                 }
             }
-	}
-}
+        }
