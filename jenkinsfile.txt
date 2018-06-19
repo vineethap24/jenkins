@@ -17,7 +17,8 @@ pipeline
 			{
 				bat "mvn install" + " -Ptest -Denv=${params.apigee_env} -Dorg=${params.apigee_org} " +
 						" -Dusername=${params.apigee_user} " +
-						" -Dpassword=${params.apigee_password} "
+						" -Dpassword=${params.apigee_password} " +
+					" -Doptions=${params.apigee_options} "
 						
 			}
 		}
