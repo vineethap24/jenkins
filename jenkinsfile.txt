@@ -22,5 +22,30 @@ pipeline
 						
 			}
 		}
+		stage('Pre-Deployment Configuration - targetservers') {
+            steps {
+                println "Predeployment of targetservers "
+                bat "mvn apigee-config:targetservers " +
+						"    -Papigee -Denv=${params.apigee_env} -Dorg=${params.apigee_org} " +
+                        "    -Dusername=${params.apigee_user} " +
+                        "    -Dpassword=${params.apigee_pwd}" +
+						" -Doptions=${params.apigee_options} "
+
+                
+            }
+        }
+		stage('Build proxy bundle') {
+                steps {
+                    
+                    bat "mvn package -Papigee -Denv=${params.apigee_env} -Dorg=${params.apigee_org}"
+
+                }
+			}	
+            
+        stage('Deploy proxy bundle') {
+                steps {
+                    bat "mvn apigee-enterprise:deploy -Papigee -Denv=${params.apigee_env} -Dorg=${params.apigee_org} -Dusername=${params.apigee_user} -Dpassword=${params.apigee_pwd} -Doptions=${params.apigee_options"
+                }
+            }
 	}
 }
