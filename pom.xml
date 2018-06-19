@@ -29,7 +29,7 @@
     <artifactId>Myfirstpipe</artifactId>
 	<!--artifactId>security-sharedflow</artifactId-->
     <version>1.0</version>
-    <name>MyfirstPipe</name>
+    <name>forecastweatherapi</name>
     <packaging>pom</packaging>
  
 
