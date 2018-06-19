@@ -4,20 +4,6 @@ pipeline
 	agent any
 	stages
 	{
-		stage('Version')
-		{
-			steps
-			{
-				bat "mvn --version"
-			}
-		}
-		stage('Build')
-		{
-			steps
-			{
-				bat "mvn build"
-			}
-		}
 		stage('package')
 		{
 			steps
