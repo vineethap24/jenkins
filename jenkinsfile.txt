@@ -23,17 +23,19 @@ pipeline {
                     sh "mvn apigee-config:targetservers " +
                             "    -Papigee -Denv=${params.apigee_env} -Dorg=${params.apigee_org} " +
                             "    -Dusername=${params.apigee_user} " +
-                            "    -Dpassword=${params.apigee_pwd}"
+                            "    -Dpassword=${params.apigee_pwd}" +
+							" -Doptions=${params.apigee_options}"
 
                 }
             }
         }
-
-            stage('Build proxy bundle') {
+			stage('Build proxy bundle') {
                 steps {
                     dir('edge') {
-                    sh "mvn package -Papigee -Denv=${params.apigee_env} -Dorg=${params.apigee_org}"
+                    sh "mvn package -Ptest -Denv=${params.apigee_env} -Dorg=${params.apigee_org}"
 
                 }
             }
         }
+}
+}
